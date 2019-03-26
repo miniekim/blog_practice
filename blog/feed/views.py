@@ -1,10 +1,10 @@
 from django.shortcuts import render
-from . import views
 
 # Create your views here.
-def Article(request):
+def index(request):
+    ctx = {}
+    return render(request,"index.html",ctx)
+def detail(request):
     pass
-def Comments(request):
-    pass
-# def HashTag(request):
+# def about(request):
 #     pass

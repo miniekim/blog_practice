@@ -4,7 +4,7 @@ from django.db import models
 
 
 class Article (models.Model):
-    DEVELPTMENT = "dv"
+    DEVELOPMENT = "dv"
     PERSONAL = "ps"
     CATEGORY_CHOICES = (
         (DEVELOPMENT,"development"),
@@ -18,6 +18,8 @@ class Article (models.Model):
         choices=CATEGORY_CHOICES,
         default=DEVELOPMENT,
     )
+    def __str__(self):
+        return self.title
 
 class Comments (models.Model) :
     article = models.ForeignKey (Article, on_delete=models.CASCADE)
@@ -25,6 +27,8 @@ class Comments (models.Model) :
     # on_delete 이하부분을 다르게 설정해서 댓글있을때, 아티클 삭제가 안되게 하는 등 설정가능.
     username = models.CharField (max_length=50)
     contents = models.CharField (max_length=200)
+    def __str__(self):
+        return "{}님이 {}라고 하셨습니다".format(self.username, self.contents)
 
-class HashTag(modes.Model) :
+class HashTag(models.Model) :
     name = models.CharField(max_length=50)
